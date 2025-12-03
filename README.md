@@ -14,8 +14,10 @@
    npm run compose:up
    ```
 4. Приложение будет доступно по адресу `http://localhost:4173`, Swagger `http://localhost:3000/api`.
+
 5. В папке backend 
    ```bash
+   npx prisma generate
    npm run seed
    ```
 
