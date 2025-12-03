@@ -1,0 +1,78 @@
+// ============================================
+// COLOR PALETTE
+// ============================================
+
+// Primary Colors
+$primary-color: #1890ff;
+$primary-color-hover: #40a9ff;
+$primary-color-active: #096dd9;
+
+// Secondary Colors
+$secondary-color: #722ed1;
+$secondary-color-hover: #9254de;
+$secondary-color-active: #531dab;
+
+// Success, Warning, Error, Info
+$success-color: #52c41a;
+$warning-color: #faad14;
+$error-color: #ff4d4f;
+$info-color: #1890ff;
+
+// Neutral Colors
+$white: #ffffff;
+$black: #000000;
+
+// Gray Scale
+$gray-1: #fafafa;
+$gray-2: #f5f5f5;
+$gray-3: #e8e8e8;
+$gray-4: #d9d9d9;
+$gray-5: #bfbfbf;
+$gray-6: #8c8c8c;
+$gray-7: #595959;
+$gray-8: #434343;
+$gray-9: #262626;
+$gray-10: #1f1f1f;
+
+// Background Colors
+$background-color-light: #f8f9fa;
+$background-color-dark: #141414;
+$background-color-base: $gray-1;
+
+// Text Colors
+$text-color: $gray-9;
+$text-color-secondary: $gray-6;
+$text-color-disabled: $gray-5;
+$text-color-inverse: $white;
+
+// Border Colors
+$border-color-base: $gray-4;
+$border-color-split: $gray-3;
+$border-color-inverse: $gray-7;
+
+// Shadow Colors
+$shadow-color: rgba(0, 0, 0, 0.15);
+$shadow-color-light: rgba(0, 0, 0, 0.08);
+
+// ============================================
+// TASK SPECIFIC COLORS
+// ============================================
+
+// Task Status Colors
+$task-status-pending: $warning-color;
+$task-status-in-progress: $primary-color;
+$task-status-completed: $success-color;
+$task-status-cancelled: $error-color;
+
+// Priority Colors
+$priority-low: $success-color;
+$priority-medium: $warning-color;
+$priority-high: $error-color;
+$priority-urgent: #cf1322;
+
+// Category Colors
+$category-work: #1890ff;
+$category-personal: #722ed1;
+$category-health: #52c41a;
+$category-education: #13c2c2;
+$category-finance: #fa8c16;

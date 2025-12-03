@@ -1,0 +1,70 @@
+@import './styles/variables.scss';
+
+.root {
+    background: white;
+    height: 100%;
+}
+
+
+.header {
+    height: 3.75rem;
+    width: 100%;
+    background-color: $gray-10;
+    border-bottom: $gray-1 .125rem solid;
+    color: $gray-1;
+    position: fixed;
+
+    align-items: center;
+    padding: 1rem 1.25rem;
+    justify-content: space-between;
+
+    &__nav {
+        gap: .5rem;
+        align-items: center;
+    }
+}
+
+.profileCard {
+    margin: 2rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.04);
+    color: $gray-1;
+    gap: .5rem;
+}
+
+.content {
+    margin-top: 5rem;
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.actionsBar {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+}
+
+.filters {
+    background: $gray-9;
+    border-radius: 0.75rem;
+    padding: 1rem;
+}
+
+.loaderWrapper {
+    min-height: 12.5rem;
+}
+
+/* TaskChip component owns its styling */
+
+.paginationBar {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.emptyState {
+    min-height: 12.5rem;
+    font-size: 1rem;
+    color: $gray-3;
+}

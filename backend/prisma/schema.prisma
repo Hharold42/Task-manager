@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
+  // output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -20,6 +20,7 @@ model User {
   createdAt DateTime @default(now())
 
   //references
+  // блин я дурак, assignee с двумя s :D
   authoredTasks Task[] @relation("AuthorTasks")
   asignedTasks  Task[] @relation("AsigneeTasks")
 }
@@ -30,9 +31,9 @@ model Task {
   description String?
   createdAt   DateTime @default(now())
   authorId    Int
-  asigneeId   Int?
+  asigneeId   Int
 
   //references
-  author  User  @relation("AuthorTasks", fields: [authorId], references: [id], onDelete: Cascade)
-  asignee User? @relation("AsigneeTasks", fields: [asigneeId], references: [id], onDelete: Cascade) // обычно во всяких системах учета можно не выбирать исполнителя
+  author  User @relation("AuthorTasks", fields: [authorId], references: [id], onDelete: Cascade)
+  asignee User @relation("AsigneeTasks", fields: [asigneeId], references: [id], onDelete: Cascade)
 }
