@@ -4,7 +4,7 @@ import request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { PrismaService } from '../src/prisma/prisma.service';
 
-const prismaMock = {
+const createPrismaMock = (): PrismaService => ({
   $connect: jest.fn().mockResolvedValue(undefined),
   $disconnect: jest.fn().mockResolvedValue(undefined),
   user: {
@@ -14,15 +14,15 @@ const prismaMock = {
   },
   task: {
     findUnique: jest.fn(),
-    findMany: jest.fn().mockResolvedValue([]),
+    findMany: jest.fn(),
     create: jest.fn(),
     update: jest.fn(),
     delete: jest.fn(),
-    count: jest.fn().mockResolvedValue(0),
+    count: jest.fn(),
   },
-} as unknown as PrismaService;
+} as unknown as PrismaService);
 
-describe('App bootstrap (e2e)', () => {
+describe('Validation and auth guards (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
@@ -30,7 +30,7 @@ describe('App bootstrap (e2e)', () => {
       imports: [AppModule],
     })
       .overrideProvider(PrismaService)
-      .useValue(prismaMock)
+      .useValue(createPrismaMock())
       .compile();
 
     app = moduleFixture.createNestApplication();
@@ -42,13 +42,21 @@ describe('App bootstrap (e2e)', () => {
     await app.close();
   });
 
-  it('/tasks (GET) returns empty list by default', async () => {
+  it('rejects invalid registration payloads', async () => {
     await request(app.getHttpServer())
-      .get('/tasks')
-      .expect(200)
-      .expect({
-        data: [],
-        meta: { page: 1, limit: 9, total: 0, totalPages: 0 },
-      });
+      .post('/auth/register')
+      .send({ email: 'invalid-email', password: 'short' })
+      .expect(400);
+  });
+
+  it('rejects empty login payloads', async () => {
+    await request(app.getHttpServer()).post('/auth/login').send({}).expect(400);
+  });
+
+  it('blocks task creation without authorization', async () => {
+    await request(app.getHttpServer())
+      .post('/tasks')
+      .send({ title: 'Test task' })
+      .expect(401);
   });
 });
